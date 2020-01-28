@@ -1,0 +1,8 @@
+project.xcworkspace/
+xcuserdata/
+
+*.swp
+*.a
+XCBuildData/
+OpenCV.build/
+

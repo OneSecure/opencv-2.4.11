@@ -6884,6 +6884,8 @@
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 					"$(inherited)",
+					"-Wno-deprecated-declarations",
+					"-Wno-unused-function",
 				);
 			};
 			name = Debug;
@@ -7262,6 +7264,8 @@
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 					"$(inherited)",
+					"-Wno-deprecated-declarations",
+					"-Wno-unused-function",
 				);
 			};
 			name = Release;

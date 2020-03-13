@@ -187,7 +187,7 @@ void eigen2x2( const float* cov, float* dst, int n )
             if( e + fabs(y) < 1e-4 )
             {
                 e = 1./(e + fabs(y) + FLT_EPSILON);
-                x *= e, y *= e;
+                x *= e; y *= e;
             }
         }
 
@@ -208,7 +208,7 @@ void eigen2x2( const float* cov, float* dst, int n )
             if( e + fabs(y) < 1e-4 )
             {
                 e = 1./(e + fabs(y) + FLT_EPSILON);
-                x *= e, y *= e;
+                x *= e; y *= e;
             }
         }
 

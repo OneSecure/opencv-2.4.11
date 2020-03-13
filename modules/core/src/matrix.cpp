@@ -2385,11 +2385,11 @@ template<typename T> static void sort_( const Mat& src, Mat& dst, int flags )
     bool inplace = src.data == dst.data;
     bool sortDescending = (flags & CV_SORT_DESCENDING) != 0;
 
-    if( sortRows )
-        n = src.rows, len = src.cols;
-    else
+    if ( sortRows ) {
+        n = src.rows; len = src.cols;
+    } else
     {
-        n = src.cols, len = src.rows;
+        n = src.cols; len = src.rows;
         buf.allocate(len);
     }
     bptr = (T*)buf;
@@ -2436,11 +2436,11 @@ template<typename T> static void sortIdx_( const Mat& src, Mat& dst, int flags )
 
     CV_Assert( src.data != dst.data );
 
-    if( sortRows )
-        n = src.rows, len = src.cols;
-    else
+    if ( sortRows ) {
+        n = src.rows; len = src.cols;
+    } else
     {
-        n = src.cols, len = src.rows;
+        n = src.cols; len = src.rows;
         buf.allocate(len);
         ibuf.allocate(len);
     }

@@ -2085,7 +2085,7 @@ cvSeqSort( CvSeq* seq, CvCmpFunc cmp_func, void* aux )
 
                 if( swap_cnt == 0 )
                 {
-                    left = left0, right = right0;
+                    left = left0; right = right0;
                     goto insert_sort;
                 }
 
@@ -2248,7 +2248,7 @@ cvSeqSearch( CvSeq* seq, const void* _elem, CvCmpFunc cmp_func,
         if( !cmp_func )
             CV_Error( CV_StsNullPtr, "Null compare function" );
 
-        i = 0, j = total;
+        i = 0; j = total;
 
         while( j > i )
         {

@@ -2729,8 +2729,9 @@ cvOpenFileStorage( const char* filename, CvMemStorage* dststorage, int flags, co
             }
             isGZ = true;
             compression = dot_pos[3];
-            if( compression )
-                dot_pos[3] = '\0', fnamelen--;
+            if ( compression ) {
+                dot_pos[3] = '\0'; fnamelen--;
+            }
         }
 
         if( !isGZ )
@@ -3856,10 +3857,11 @@ icvReadSparseMat( CvFileStorage* fs, CvFileNode* node )
             idx[dims-1] = k;
         else
         {
-            if( i > 0 )
+            if ( i > 0 ) {
                 k = dims + k - 1;
-            else
-                idx[0] = k, k = 1;
+            } else {
+                idx[0] = k; k = 1;
+            }
             for( ; k < dims; k++ )
             {
                 CV_NEXT_SEQ_ELEM( elements->elem_size, reader );

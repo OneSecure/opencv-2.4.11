@@ -57,9 +57,9 @@ static void magSpectrums( InputArray _src, OutputArray _dst)
 
     bool is_1d = (rows == 1 || (cols == 1 && src.isContinuous() && dst.isContinuous()));
 
-    if( is_1d )
-        cols = cols + rows - 1, rows = 1;
-
+    if ( is_1d ) {
+        cols = cols + rows - 1; rows = 1;
+    }
     int ncols = cols*cn;
     int j0 = cn == 1;
     int j1 = ncols - (cols % 2 == 0 && cn == 1);
@@ -76,8 +76,9 @@ static void magSpectrums( InputArray _src, OutputArray _dst)
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataSrc += cols - 1, dataDst += cols - 1;
+                if ( k == 1 ) {
+                    dataSrc += cols - 1; dataDst += cols - 1;
+                }
                 dataDst[0] = dataSrc[0]*dataSrc[0];
                 if( rows % 2 == 0 )
                     dataDst[(rows-1)*stepDst] = dataSrc[(rows-1)*stepSrc]*dataSrc[(rows-1)*stepSrc];
@@ -88,8 +89,9 @@ static void magSpectrums( InputArray _src, OutputArray _dst)
                                                           (double)dataSrc[(j+1)*stepSrc]*dataSrc[(j+1)*stepSrc]);
                 }
 
-                if( k == 1 )
-                    dataSrc -= cols - 1, dataDst -= cols - 1;
+                if ( k == 1 ) {
+                    dataSrc -= cols - 1; dataDst -= cols - 1;
+                }
             }
         }
 
@@ -120,8 +122,9 @@ static void magSpectrums( InputArray _src, OutputArray _dst)
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataSrc += cols - 1, dataDst += cols - 1;
+                if ( k == 1 ) {
+                    dataSrc += cols - 1; dataDst += cols - 1;
+                }
                 dataDst[0] = dataSrc[0]*dataSrc[0];
                 if( rows % 2 == 0 )
                     dataDst[(rows-1)*stepDst] = dataSrc[(rows-1)*stepSrc]*dataSrc[(rows-1)*stepSrc];
@@ -132,8 +135,9 @@ static void magSpectrums( InputArray _src, OutputArray _dst)
                                                    dataSrc[(j+1)*stepSrc]*dataSrc[(j+1)*stepSrc]);
                 }
 
-                if( k == 1 )
-                    dataSrc -= cols - 1, dataDst -= cols - 1;
+                if ( k == 1 ) {
+                    dataSrc -= cols - 1; dataDst -= cols - 1;
+                }
             }
         }
 
@@ -170,9 +174,9 @@ static void divSpectrums( InputArray _srcA, InputArray _srcB, OutputArray _dst, 
     bool is_1d = (flags & DFT_ROWS) || (rows == 1 || (cols == 1 &&
              srcA.isContinuous() && srcB.isContinuous() && dst.isContinuous()));
 
-    if( is_1d && !(flags & DFT_ROWS) )
-        cols = cols + rows - 1, rows = 1;
-
+    if ( is_1d && !(flags & DFT_ROWS) ) {
+        cols = cols + rows - 1; rows = 1;
+    }
     int ncols = cols*cn;
     int j0 = cn == 1;
     int j1 = ncols - (cols % 2 == 0 && cn == 1);
@@ -192,8 +196,9 @@ static void divSpectrums( InputArray _srcA, InputArray _srcB, OutputArray _dst, 
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataA += cols - 1, dataB += cols - 1, dataC += cols - 1;
+                if ( k == 1 ) {
+                    dataA += cols - 1; dataB += cols - 1; dataC += cols - 1;
+                }
                 dataC[0] = dataA[0] / (dataB[0] + eps);
                 if( rows % 2 == 0 )
                     dataC[(rows-1)*stepC] = dataA[(rows-1)*stepA] / (dataB[(rows-1)*stepB] + eps);
@@ -228,8 +233,9 @@ static void divSpectrums( InputArray _srcA, InputArray _srcB, OutputArray _dst, 
                         dataC[j*stepC] = (float)(re / denom);
                         dataC[(j+1)*stepC] = (float)(im / denom);
                     }
-                if( k == 1 )
-                    dataA -= cols - 1, dataB -= cols - 1, dataC -= cols - 1;
+                if ( k == 1 ) {
+                    dataA -= cols - 1; dataB -= cols - 1; dataC -= cols - 1;
+                }
             }
         }
 
@@ -277,8 +283,9 @@ static void divSpectrums( InputArray _srcA, InputArray _srcB, OutputArray _dst, 
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataA += cols - 1, dataB += cols - 1, dataC += cols - 1;
+                if ( k == 1 ) {
+                    dataA += cols - 1; dataB += cols - 1; dataC += cols - 1;
+                }
                 dataC[0] = dataA[0] / (dataB[0] + eps);
                 if( rows % 2 == 0 )
                     dataC[(rows-1)*stepC] = dataA[(rows-1)*stepA] / (dataB[(rows-1)*stepB] + eps);
@@ -312,8 +319,9 @@ static void divSpectrums( InputArray _srcA, InputArray _srcB, OutputArray _dst, 
                         dataC[j*stepC] = re / denom;
                         dataC[(j+1)*stepC] = im / denom;
                     }
-                if( k == 1 )
-                    dataA -= cols - 1, dataB -= cols - 1, dataC -= cols - 1;
+                if ( k == 1 ) {
+                    dataA -= cols - 1; dataB -= cols - 1; dataC -= cols - 1;
+                }
             }
         }
 

@@ -2360,10 +2360,12 @@ cvGetMinMaxHistValue( const CvHistogram* hist,
         }
         else if( dims == 2 )
         {
-            if( idx_min )
-                idx_min[0] = minPt.y, idx_min[1] = minPt.x;
-            if( idx_max )
-                idx_max[0] = maxPt.y, idx_max[1] = maxPt.x;
+            if ( idx_min ) {
+                idx_min[0] = minPt.y; idx_min[1] = minPt.x;
+            }
+            if ( idx_max ) {
+                idx_max[0] = maxPt.y; idx_max[1] = maxPt.x;
+            }
         }
         else if( idx_min || idx_max )
         {

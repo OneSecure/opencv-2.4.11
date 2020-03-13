@@ -1811,7 +1811,7 @@ struct Lab2RGB_f
                 bo = splineInterpolate(bo * gscale, gammaTab, GAMMA_TAB_SIZE);
             }
 
-            dst[0] = ro, dst[1] = go, dst[2] = bo;
+            dst[0] = ro; dst[1] = go; dst[2] = bo;
             if( dcn == 4 )
                 dst[3] = alpha;
         }
@@ -4275,7 +4275,7 @@ void cv::cvtColor( InputArray _src, OutputArray _dst, int code, int dcn )
                 int ustepIdx = 0;
                 int vstepIdx = dstSz.height % 4 == 2 ? 1 : 0;
 
-                if(uIdx == 1) { std::swap(u ,v), std::swap(ustepIdx, vstepIdx); };
+                if(uIdx == 1) { std::swap(u ,v); std::swap(ustepIdx, vstepIdx); };
 
                 switch(dcn*10 + bIdx)
                 {

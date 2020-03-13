@@ -1103,21 +1103,21 @@ void cv::minMaxIdx(InputArray _src, double* minVal,
     int *minval = &iminval, *maxval = &imaxval;
     int planeSize = (int)it.size*cn;
 
-    if( depth == CV_32F )
-        minval = (int*)&fminval, maxval = (int*)&fmaxval;
-    else if( depth == CV_64F )
-        minval = (int*)&dminval, maxval = (int*)&dmaxval;
-
+    if ( depth == CV_32F ) {
+        minval = (int*)&fminval; maxval = (int*)&fmaxval;
+    } else if( depth == CV_64F ) {
+        minval = (int*)&dminval; maxval = (int*)&dmaxval;
+    }
     for( size_t i = 0; i < it.nplanes; i++, ++it, startidx += planeSize )
         func( ptrs[0], ptrs[1], minval, maxval, &minidx, &maxidx, planeSize, startidx );
 
-    if( minidx == 0 )
+    if ( minidx == 0 ) {
         dminval = dmaxval = 0;
-    else if( depth == CV_32F )
-        dminval = fminval, dmaxval = fmaxval;
-    else if( depth <= CV_32S )
-        dminval = iminval, dmaxval = imaxval;
-
+    } else if( depth == CV_32F ) {
+        dminval = fminval; dmaxval = fmaxval;
+    } else if( depth <= CV_32S ) {
+        dminval = iminval; dmaxval = imaxval;
+    }
     if( minVal )
         *minVal = dminval;
     if( maxVal )

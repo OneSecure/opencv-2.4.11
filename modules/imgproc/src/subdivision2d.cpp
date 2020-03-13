@@ -758,11 +758,11 @@ void Subdiv2D::getVoronoiFacetList(const vector<int>& idx,
     vector<Point2f> buf;
 
     size_t i, total;
-    if( idx.empty() )
-        i = 4, total = vtx.size();
-    else
-        i = 0, total = idx.size();
-
+    if ( idx.empty() ) {
+        i = 4; total = vtx.size();
+    } else {
+        i = 0; total = idx.size();
+    }
     for( ; i < total; i++ )
     {
         int k = idx.empty() ? (int)i : idx[i];

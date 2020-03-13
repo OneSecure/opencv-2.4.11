@@ -358,22 +358,23 @@ static bool between( Point2f a, Point2f b, Point2f c )
 static char parallelInt( Point2f a, Point2f b, Point2f c, Point2f d, Point2f& p, Point2f& q )
 {
     char code = 'e';
-    if( areaSign(a, b, c) != 0 )
+    if ( areaSign(a, b, c) != 0 ) {
         code = '0';
-    else if( between(a, b, c) && between(a, b, d))
-        p = c, q = d;
-    else if( between(c, d, a) && between(c, d, b))
-        p = a, q = b;
-    else if( between(a, b, c) && between(c, d, b))
-        p = c, q = b;
-    else if( between(a, b, c) && between(c, d, a))
-        p = c, q = a;
-    else if( between(a, b, d) && between(c, d, b))
-        p = d, q = b;
-    else if( between(a, b, d) && between(c, d, a))
-        p = d, q = a;
-    else
+    } else if( between(a, b, c) && between(a, b, d)) {
+        p = c; q = d;
+    } else if( between(c, d, a) && between(c, d, b)) {
+        p = a; q = b;
+    } else if( between(a, b, c) && between(c, d, b)) {
+        p = c; q = b;
+    } else if( between(a, b, c) && between(c, d, a)) {
+        p = c; q = a;
+    } else if( between(a, b, d) && between(c, d, b)) {
+        p = d; q = b;
+    } else if( between(a, b, d) && between(c, d, a)) {
+        p = d; q = a;
+    } else {
         code = '0';
+    }
     return code;
 }
 

@@ -1702,7 +1702,7 @@ void cv::dft( InputArray _src0, OutputArray _dst, int flags, int nonzero_rows )
             ptr += len*complex_elem_size;
             buf1 = ptr;
             ptr += len*complex_elem_size;
-            dbuf0 = buf0, dbuf1 = buf1;
+            dbuf0 = buf0; dbuf1 = buf1;
 
             if( use_buf )
             {
@@ -1896,9 +1896,9 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
     bool is_1d = (flags & DFT_ROWS) || (rows == 1 || (cols == 1 &&
              srcA.isContinuous() && srcB.isContinuous() && dst.isContinuous()));
 
-    if( is_1d && !(flags & DFT_ROWS) )
-        cols = cols + rows - 1, rows = 1;
-
+    if( is_1d && !(flags & DFT_ROWS) ) {
+        cols = cols + rows - 1; rows = 1;
+    }
     int ncols = cols*cn;
     int j0 = cn == 1;
     int j1 = ncols - (cols % 2 == 0 && cn == 1);
@@ -1917,8 +1917,9 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataA += cols - 1, dataB += cols - 1, dataC += cols - 1;
+                if ( k == 1 ) {
+                    dataA += cols - 1; dataB += cols - 1; dataC += cols - 1;
+                }
                 dataC[0] = dataA[0]*dataB[0];
                 if( rows % 2 == 0 )
                     dataC[(rows-1)*stepC] = dataA[(rows-1)*stepA]*dataB[(rows-1)*stepB];
@@ -1940,8 +1941,9 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
                                     (double)dataA[j*stepA]*dataB[(j+1)*stepB];
                         dataC[j*stepC] = (float)re; dataC[(j+1)*stepC] = (float)im;
                     }
-                if( k == 1 )
-                    dataA -= cols - 1, dataB -= cols - 1, dataC -= cols - 1;
+                if ( k == 1 ) {
+                    dataA -= cols - 1; dataB -= cols - 1; dataC -= cols - 1;
+                }
             }
         }
 
@@ -1984,8 +1986,9 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
         {
             for( k = 0; k < (cols % 2 ? 1 : 2); k++ )
             {
-                if( k == 1 )
-                    dataA += cols - 1, dataB += cols - 1, dataC += cols - 1;
+                if ( k == 1 ) {
+                    dataA += cols - 1; dataB += cols - 1; dataC += cols - 1;
+                }
                 dataC[0] = dataA[0]*dataB[0];
                 if( rows % 2 == 0 )
                     dataC[(rows-1)*stepC] = dataA[(rows-1)*stepA]*dataB[(rows-1)*stepB];
@@ -2007,8 +2010,9 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
                                     dataA[j*stepA]*dataB[(j+1)*stepB];
                         dataC[j*stepC] = re; dataC[(j+1)*stepC] = im;
                     }
-                if( k == 1 )
-                    dataA -= cols - 1, dataB -= cols - 1, dataC -= cols - 1;
+                if ( k == 1 ) {
+                    dataA -= cols - 1; dataB -= cols - 1; dataC -= cols - 1;
+                }
             }
         }
 

@@ -2416,10 +2416,10 @@ public:
 
                 for(int j = 0;j < dest->cols *cn; j+=cn)
                 {
-                    sumVal_b= 0, sumVal_g= 0, sumVal_r= 0;
-                    sumValSqr_b= 0, sumValSqr_g= 0, sumValSqr_r= 0;
-                    totalWeight_b= 0., totalWeight_g= 0., totalWeight_r= 0.;
-                    tmpSum_b = 0., tmpSum_g= 0., tmpSum_r = 0.;
+                    sumVal_b= 0; sumVal_g= 0; sumVal_r= 0;
+                    sumValSqr_b= 0; sumValSqr_g= 0; sumValSqr_r= 0;
+                    totalWeight_b= 0.; totalWeight_g= 0.; totalWeight_r= 0.;
+                    tmpSum_b = 0.; tmpSum_g= 0.; tmpSum_r = 0.;
 
                     // Top row: don't sum the very last element
                     int startLMJ = 0;
@@ -2432,7 +2432,7 @@ public:
                         tptr = temp->ptr(startY + x) +j;
                         for(int y=-anX; y<=anX; y++)
                         {
-                            currVal_b = tptr[cn*(y+anX)], currVal_g = tptr[cn*(y+anX)+1], currVal_r =tptr[cn*(y+anX)+2];
+                            currVal_b = tptr[cn*(y+anX)]; currVal_g = tptr[cn*(y+anX)+1]; currVal_r =tptr[cn*(y+anX)+2];
                             sumVal_b += currVal_b;
                             sumVal_g += currVal_g;
                             sumVal_r += currVal_r;
@@ -2466,7 +2466,7 @@ public:
                     startLMJ = 0;
                     endLMJ = ksize.width;
                     tptr = temp->ptr(startY + (startLMJ+ endLMJ)/2) + j;
-                    currValCenter_b =tptr[cn*anX], currValCenter_g =tptr[cn*anX+1], currValCenter_r =tptr[cn*anX+2];
+                    currValCenter_b =tptr[cn*anX]; currValCenter_g =tptr[cn*anX+1]; currValCenter_r =tptr[cn*anX+2];
                     for(int x = startLMJ; x< endLMJ; x++)
                     {
                         tptr = temp->ptr(startY + x) +j;
@@ -2497,7 +2497,7 @@ public:
                             tmpSum_b += ((float)tptr[cn*(y+anX)]   * weight_b);
                             tmpSum_g += ((float)tptr[cn*(y+anX)+1] * weight_g);
                             tmpSum_r += ((float)tptr[cn*(y+anX)+2] * weight_r);
-                            totalWeight_b += weight_b, totalWeight_g += weight_g, totalWeight_r += weight_r;
+                            totalWeight_b += weight_b; totalWeight_g += weight_g; totalWeight_r += weight_r;
                         }
                     }
                     tmpSum_b /= totalWeight_b;

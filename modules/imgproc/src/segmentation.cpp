@@ -432,7 +432,7 @@ cvPyrMeanShiftFiltering( const CvArr* srcarr, CvArr* dstarr,
                 if( mask && !mask[j] )
                     continue;
 
-                c0 = sptr[0], c1 = sptr[1], c2 = sptr[2];
+                c0 = sptr[0]; c1 = sptr[1]; c2 = sptr[2];
 
                 // iterate meanshift procedure
                 for( iter = 0; iter < termcrit.max_iter; iter++ )
@@ -464,19 +464,19 @@ cvPyrMeanShiftFiltering( const CvArr* srcarr, CvArr* dstarr,
                                 s0 += t0; s1 += t1; s2 += t2;
                                 sx += x; row_count++;
                             }
-                            t0 = ptr[3], t1 = ptr[4], t2 = ptr[5];
+                            t0 = ptr[3]; t1 = ptr[4]; t2 = ptr[5];
                             if( tab[t0-c0+255] + tab[t1-c1+255] + tab[t2-c2+255] <= isr2 )
                             {
                                 s0 += t0; s1 += t1; s2 += t2;
                                 sx += x+1; row_count++;
                             }
-                            t0 = ptr[6], t1 = ptr[7], t2 = ptr[8];
+                            t0 = ptr[6]; t1 = ptr[7]; t2 = ptr[8];
                             if( tab[t0-c0+255] + tab[t1-c1+255] + tab[t2-c2+255] <= isr2 )
                             {
                                 s0 += t0; s1 += t1; s2 += t2;
                                 sx += x+2; row_count++;
                             }
-                            t0 = ptr[9], t1 = ptr[10], t2 = ptr[11];
+                            t0 = ptr[9]; t1 = ptr[10]; t2 = ptr[11];
                             if( tab[t0-c0+255] + tab[t1-c1+255] + tab[t2-c2+255] <= isr2 )
                             {
                                 s0 += t0; s1 += t1; s2 += t2;

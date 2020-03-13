@@ -197,8 +197,9 @@ struct Diff8uC3
 {
     Diff8uC3(cv::Vec3b _lo, cv::Vec3b _up)
     {
-        for( int k = 0; k < 3; k++ )
-            lo[k] = _lo[k], interval[k] = _lo[k] + _up[k];
+        for ( int k = 0; k < 3; k++ ) {
+            lo[k] = _lo[k]; interval[k] = _lo[k] + _up[k];
+        }
     }
     bool operator()(const cv::Vec3b* a, const cv::Vec3b* b) const
     {
@@ -370,7 +371,7 @@ icvFloodFillGrad_CnIR( uchar* pImage, int step, uchar* pMask, int maskStep,
                     _Tp val;
 
                     if( !mask[i] &&
-                        (((val = img[i],
+                       (((static_cast<void>((val = img[i])),
                         (unsigned)(idx = i-L-1) <= length) &&
                         diff( &val, img1 + (i-1))) ||
                         ((unsigned)(++idx) <= length &&
@@ -384,7 +385,7 @@ icvFloodFillGrad_CnIR( uchar* pImage, int step, uchar* pMask, int maskStep,
                             mask[j] = newMaskVal;
 
                         while( !mask[++i] &&
-                               ((val = img[i],
+                              ((static_cast<void>((val = img[i])),
                                diff( &val, img + (i-1) )) ||
                                (((unsigned)(idx = i-L-1) <= length &&
                                diff( &val, img1 + (i-1) ))) ||

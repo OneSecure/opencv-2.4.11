@@ -985,7 +985,7 @@ EllipseEx( Mat& img, Point center, Size axes,
            int angle, int arc_start, int arc_end,
            const void* color, int thickness, int line_type )
 {
-    axes.width = std::abs(axes.width), axes.height = std::abs(axes.height);
+    axes.width = std::abs(axes.width); axes.height = std::abs(axes.height);
     int delta = (std::max(axes.width,axes.height)+(XY_ONE>>1))>>XY_SHIFT;
     delta = delta < 3 ? 90 : delta < 10 ? 30 : delta < 15 ? 18 : 5;
 
@@ -1048,11 +1048,11 @@ FillConvexPoly( Mat& img, const Point* v, int npts, const void* color, int line_
     Point p0;
     int delta1, delta2;
 
-    if( line_type < CV_AA )
+    if ( line_type < CV_AA ) {
         delta1 = delta2 = XY_ONE >> 1;
-    else
-        delta1 = XY_ONE - 1, delta2 = 0;
-
+    } else {
+        delta1 = XY_ONE - 1; delta2 = 0;
+    }
     p0 = v[npts - 1];
     p0.x <<= XY_SHIFT - shift;
     p0.y <<= XY_SHIFT - shift;

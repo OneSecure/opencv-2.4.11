@@ -119,18 +119,18 @@ icvRotatingCalipers( CvPoint2D32f* points, int n, int mode, float* out )
     {
         double dx, dy;
 
-        if( pt0.x < left_x )
-            left_x = pt0.x, left = i;
-
-        if( pt0.x > right_x )
-            right_x = pt0.x, right = i;
-
-        if( pt0.y > top_y )
-            top_y = pt0.y, top = i;
-
-        if( pt0.y < bottom_y )
-            bottom_y = pt0.y, bottom = i;
-
+        if ( pt0.x < left_x ) {
+            left_x = pt0.x; left = i;
+        }
+        if ( pt0.x > right_x ) {
+            right_x = pt0.x; right = i;
+        }
+        if ( pt0.y > top_y ) {
+            top_y = pt0.y; top = i;
+        }
+        if ( pt0.y < bottom_y ) {
+            bottom_y = pt0.y; bottom = i;
+        }
         CvPoint2D32f pt = points[(i+1) & (i+1 < n ? -1 : 0)];
 
         dx = pt.x - pt0.x;
@@ -199,11 +199,11 @@ icvRotatingCalipers( CvPoint2D32f* points, int n, int mode, float* out )
 
         /* choose minimal angle */
         cosalpha = dp1 * inv_vect_length[seq[1]];
-        maxcos = (cosalpha > maxcos) ? (main_element = 1, cosalpha) : maxcos;
+        maxcos = (cosalpha > maxcos) ? (static_cast<void>(main_element = 1), cosalpha) : maxcos;
         cosalpha = dp2 * inv_vect_length[seq[2]];
-        maxcos = (cosalpha > maxcos) ? (main_element = 2, cosalpha) : maxcos;
+        maxcos = (cosalpha > maxcos) ? (static_cast<void>(main_element = 2), cosalpha) : maxcos;
         cosalpha = dp3 * inv_vect_length[seq[3]];
-        maxcos = (cosalpha > maxcos) ? (main_element = 3, cosalpha) : maxcos;
+        maxcos = (cosalpha > maxcos) ? (static_cast<void>(main_element = 3), cosalpha) : maxcos;
 
         /*rotate calipers*/
         {

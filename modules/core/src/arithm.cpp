@@ -1384,10 +1384,12 @@ static void arithm_op(InputArray _src1, InputArray _src2, OutputArray _dst,
 
         _buf.allocate(bufesz*blocksize + 64);
         buf = _buf;
-        if( cvtsrc1 )
-            buf1 = buf, buf = alignPtr(buf + blocksize*wsz, 16);
-        if( cvtsrc2 )
-            buf2 = buf, buf = alignPtr(buf + blocksize*wsz, 16);
+        if( cvtsrc1 ) {
+            buf1 = buf; buf = alignPtr(buf + blocksize*wsz, 16);
+        }
+        if( cvtsrc2 ) {
+            buf2 = buf; buf = alignPtr(buf + blocksize*wsz, 16);
+        }
         wbuf = maskbuf = buf;
         if( cvtdst )
             buf = alignPtr(buf + blocksize*wsz, 16);
@@ -1448,8 +1450,9 @@ static void arithm_op(InputArray _src1, InputArray _src2, OutputArray _dst,
 
         _buf.allocate(bufesz*blocksize + 64);
         buf = _buf;
-        if( cvtsrc1 )
-            buf1 = buf, buf = alignPtr(buf + blocksize*wsz, 16);
+        if ( cvtsrc1 ) {
+            buf1 = buf; buf = alignPtr(buf + blocksize*wsz, 16);
+        }
         buf2 = buf; buf = alignPtr(buf + blocksize*wsz, 16);
         wbuf = maskbuf = buf;
         if( cvtdst )
@@ -2755,8 +2758,9 @@ void cv::inRange(InputArray _src, InputArray _lowerb,
 
             for( int k = 0; k < cn; k++ )
             {
-                if( ilbuf[k] > iubuf[k] || ilbuf[k] > maxval || iubuf[k] < minval )
-                    ilbuf[k] = minval+1, iubuf[k] = minval;
+                if( ilbuf[k] > iubuf[k] || ilbuf[k] > maxval || iubuf[k] < minval ) {
+                    ilbuf[k] = minval+1; iubuf[k] = minval;
+                }
             }
             lb = Mat(cn, 1, CV_32S, ilbuf);
             ub = Mat(cn, 1, CV_32S, iubuf);

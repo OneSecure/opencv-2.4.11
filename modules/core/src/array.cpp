@@ -1660,10 +1660,11 @@ cvPtr1D( const CvArr* arr, int idx, int* _type )
         else
         {
             int row, col;
-            if( mat->cols == 1 )
-                row = idx, col = 0;
-            else
-                row = idx/mat->cols, col = idx - row*mat->cols;
+            if ( mat->cols == 1 ) {
+                row = idx; col = 0;
+            } else {
+                row = idx/mat->cols; col = idx - row*mat->cols;
+            }
             ptr = mat->data.ptr + (size_t)row*mat->step + col*pix_size;
         }
     }

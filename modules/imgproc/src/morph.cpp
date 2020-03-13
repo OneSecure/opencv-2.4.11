@@ -1052,11 +1052,11 @@ cv::Mat cv::getStructuringElement(int shape, Size ksize, Point anchor)
         uchar* ptr = elem.data + i*elem.step;
         int j1 = 0, j2 = 0;
 
-        if( shape == MORPH_RECT || (shape == MORPH_CROSS && i == anchor.y) )
+        if ( shape == MORPH_RECT || (shape == MORPH_CROSS && i == anchor.y) ) {
             j2 = ksize.width;
-        else if( shape == MORPH_CROSS )
-            j1 = anchor.x, j2 = j1 + 1;
-        else
+        } else if( shape == MORPH_CROSS ) {
+            j1 = anchor.x; j2 = j1 + 1;
+        } else
         {
             int dy = i - r;
             if( std::abs(dy) <= r )

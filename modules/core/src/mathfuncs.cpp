@@ -2307,8 +2307,9 @@ CV_IMPL void cvPow( const CvArr* srcarr, CvArr* dstarr, double power )
 CV_IMPL int cvCheckArr( const CvArr* arr, int flags,
                         double minVal, double maxVal )
 {
-    if( (flags & CV_CHECK_RANGE) == 0 )
-        minVal = -DBL_MAX, maxVal = DBL_MAX;
+    if ( (flags & CV_CHECK_RANGE) == 0 ) {
+        minVal = -DBL_MAX; maxVal = DBL_MAX;
+    }
     return cv::checkRange(cv::cvarrToMat(arr), (flags & CV_CHECK_QUIET) != 0, 0, minVal, maxVal );
 }
 

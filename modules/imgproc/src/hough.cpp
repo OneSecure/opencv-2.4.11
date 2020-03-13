@@ -584,9 +584,9 @@ icvHoughLinesProbabilistic( CvMat* image,
         {
             int gap = 0, x = x0, y = y0, dx = dx0, dy = dy0;
 
-            if( k > 0 )
-                dx = -dx, dy = -dy;
-
+            if ( k > 0 ) {
+                dx = -dx; dy = -dy;
+            }
             // walk along the line using fixed-point arithmetics,
             // stop at the image border or in case of too big gap
             for( ;; x += dx, y += dy )
@@ -632,9 +632,9 @@ icvHoughLinesProbabilistic( CvMat* image,
         {
             int x = x0, y = y0, dx = dx0, dy = dy0;
 
-            if( k > 0 )
-                dx = -dx, dy = -dy;
-
+            if ( k > 0 ) {
+                dx = -dx; dy = -dy;
+            }
             // walk along the line using fixed-point arithmetics,
             // stop at the image border or in case of too big gap
             for( ;; x += dx, y += dy )

@@ -216,15 +216,15 @@ static const void* initInterTab2D( int method, bool fixpt )
     float* tab = 0;
     short* itab = 0;
     int ksize = 0;
-    if( method == INTER_LINEAR )
-        tab = BilinearTab_f[0][0], itab = BilinearTab_i[0][0], ksize=2;
-    else if( method == INTER_CUBIC )
-        tab = BicubicTab_f[0][0], itab = BicubicTab_i[0][0], ksize=4;
-    else if( method == INTER_LANCZOS4 )
-        tab = Lanczos4Tab_f[0][0], itab = Lanczos4Tab_i[0][0], ksize=8;
-    else
+    if ( method == INTER_LINEAR ) {
+        tab = BilinearTab_f[0][0]; itab = BilinearTab_i[0][0]; ksize=2;
+    } else if( method == INTER_CUBIC ) {
+        tab = BicubicTab_f[0][0]; itab = BicubicTab_i[0][0]; ksize=4;
+    } else if( method == INTER_LANCZOS4 ) {
+        tab = Lanczos4Tab_f[0][0]; itab = Lanczos4Tab_i[0][0]; ksize=8;
+    } else {
         CV_Error( CV_StsBadArg, "Unknown/unsupported interpolation type" );
-
+    }
     if( !inittab[method] )
     {
         AutoBuffer<float> _tab(8*INTER_TAB_SIZE);
@@ -255,10 +255,11 @@ static const void* initInterTab2D( int method, bool fixpt )
                     for( k1 = ksize2; k1 < ksize2+2; k1++ )
                         for( k2 = ksize2; k2 < ksize2+2; k2++ )
                         {
-                            if( itab[k1*ksize+k2] < itab[mk1*ksize+mk2] )
-                                mk1 = k1, mk2 = k2;
-                            else if( itab[k1*ksize+k2] > itab[Mk1*ksize+Mk2] )
-                                Mk1 = k1, Mk2 = k2;
+                            if ( itab[k1*ksize+k2] < itab[mk1*ksize+mk2] ) {
+                                mk1 = k1; mk2 = k2;
+                            } else if( itab[k1*ksize+k2] > itab[Mk1*ksize+Mk2] ) {
+                                Mk1 = k1; Mk2 = k2;
+                            }
                         }
                     if( diff < 0 )
                         itab[Mk1*ksize + Mk2] = (short)(itab[Mk1*ksize + Mk2] - diff);
@@ -2101,14 +2102,15 @@ void cv::resize( InputArray _src, OutputArray _dst, Size dsize,
     float fx, fy;
     ResizeFunc func=0;
     int ksize=0, ksize2;
-    if( interpolation == INTER_CUBIC )
-        ksize = 4, func = cubic_tab[depth];
-    else if( interpolation == INTER_LANCZOS4 )
-        ksize = 8, func = lanczos4_tab[depth];
-    else if( interpolation == INTER_LINEAR || interpolation == INTER_AREA )
-        ksize = 2, func = linear_tab[depth];
-    else
+    if ( interpolation == INTER_CUBIC ) {
+        ksize = 4; func = cubic_tab[depth];
+    } else if( interpolation == INTER_LANCZOS4 ) {
+        ksize = 8; func = lanczos4_tab[depth];
+    } else if( interpolation == INTER_LINEAR || interpolation == INTER_AREA ) {
+        ksize = 2; func = linear_tab[depth];
+    } else {
         CV_Error( CV_StsBadArg, "Unknown interpolation method" );
+    }
     ksize2 = ksize/2;
 
     CV_Assert( func != 0 );
@@ -2140,15 +2142,17 @@ void cv::resize( InputArray _src, OutputArray _dst, Size dsize,
         if( sx < ksize2-1 )
         {
             xmin = dx+1;
-            if( sx < 0 )
-                fx = 0, sx = 0;
+            if ( sx < 0 ) {
+                fx = 0; sx = 0;
+            }
         }
 
         if( sx + ksize2 >= ssize.width )
         {
             xmax = std::min( xmax, dx );
-            if( sx >= ssize.width-1 )
-                fx = 0, sx = ssize.width-1;
+            if ( sx >= ssize.width-1 ) {
+                fx = 0; sx = ssize.width-1;
+            }
         }
 
         for( k = 0, sx *= cn; k < cn; k++ )

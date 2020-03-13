@@ -149,13 +149,13 @@ GEMMSingleMul( const T* a_data, size_t a_step,
     a_step0 = a_step;
     a_step1 = 1;
 
-    if( !c_data )
+    if ( !c_data ) {
         c_step0 = c_step1 = 0;
-    else if( !(flags & GEMM_3_T) )
-        c_step0 = c_step, c_step1 = 1;
-    else
-        c_step0 = 1, c_step1 = c_step;
-
+    } else if( !(flags & GEMM_3_T) ) {
+        c_step0 = c_step; c_step1 = 1;
+    } else {
+        c_step0 = 1; c_step1 = c_step;
+    }
     if( flags & GEMM_1_T )
     {
         CV_SWAP( a_step0, a_step1, t_step );
@@ -501,13 +501,13 @@ GEMMStore( const T* c_data, size_t c_step,
     d_buf_step /= sizeof(d_buf[0]);
     d_step /= sizeof(d_data[0]);
 
-    if( !c_data )
+    if ( !c_data ) {
         c_step0 = c_step1 = 0;
-    else if( !(flags & GEMM_3_T) )
-        c_step0 = c_step, c_step1 = 1;
-    else
-        c_step0 = 1, c_step1 = c_step;
-
+    } else if( !(flags & GEMM_3_T) ) {
+        c_step0 = c_step; c_step1 = 1;
+    } else {
+        c_step0 = 1; c_step1 = c_step;
+    }
     for( ; d_size.height--; _c_data += c_step0, d_buf += d_buf_step, d_data += d_step )
     {
         if( _c_data )
@@ -1146,26 +1146,26 @@ void cv::gemm( InputArray matA, InputArray matB, double alpha,
         size_t a_step0, a_step1, b_step0, b_step1, c_step0, c_step1;
         int work_elem_size = elem_size << (CV_MAT_DEPTH(type) == CV_32F ? 1 : 0);
 
-        if( !is_a_t )
-            a_step0 = A.step, a_step1 = elem_size;
-        else
-            a_step0 = elem_size, a_step1 = A.step;
-
-        if( !is_b_t )
-            b_step0 = b_step, b_step1 = elem_size;
-        else
-            b_step0 = elem_size, b_step1 = b_step;
-
+        if ( !is_a_t ) {
+            a_step0 = A.step; a_step1 = elem_size;
+        } else {
+            a_step0 = elem_size; a_step1 = A.step;
+        }
+        if ( !is_b_t ) {
+            b_step0 = b_step; b_step1 = elem_size;
+        } else {
+            b_step0 = elem_size; b_step1 = b_step;
+        }
         if( !C.data )
         {
             c_step0 = c_step1 = 0;
             flags &= ~GEMM_3_T;
         }
-        else if( !(flags & GEMM_3_T) )
-            c_step0 = C.step, c_step1 = elem_size;
-        else
-            c_step0 = elem_size, c_step1 = C.step;
-
+        else if ( !(flags & GEMM_3_T) ) {
+            c_step0 = C.step; c_step1 = elem_size;
+        } else {
+            c_step0 = elem_size; c_step1 = C.step;
+        }
         dm0 = std::min( block_lin_size, d_size.height );
         dn0 = std::min( block_lin_size, d_size.width );
         dk0_1 = block_size / dm0;
@@ -1231,11 +1231,11 @@ void cv::gemm( InputArray matA, InputArray matB, double alpha,
                     if( k + dk >= len || 8*(k + dk) + dk > 8*len )
                         dk = len - k;
 
-                    if( !is_a_t )
-                        a_bl_size.width = dk, a_bl_size.height = di;
-                    else
-                        a_bl_size.width = di, a_bl_size.height = dk;
-
+                    if ( !is_a_t ) {
+                        a_bl_size.width = dk; a_bl_size.height = di;
+                    } else {
+                        a_bl_size.width = di; a_bl_size.height = dk;
+                    }
                     if( a_buf && is_a_t )
                     {
                         _a_step = dk*elem_size;
@@ -1247,11 +1247,11 @@ void cv::gemm( InputArray matA, InputArray matB, double alpha,
                     if( dj < d_size.width )
                     {
                         Size b_size;
-                        if( !is_b_t )
-                            b_size.width = dj, b_size.height = dk;
-                        else
-                            b_size.width = dk, b_size.height = dj;
-
+                        if ( !is_b_t ) {
+                            b_size.width = dj; b_size.height = dk;
+                        } else {
+                            b_size.width = dk; b_size.height = dj;
+                        }
                         _b_step = b_size.width*elem_size;
                         GEMM_CopyBlock( _b, b_step, b_buf, _b_step, b_size, elem_size );
                         _b = b_buf;
@@ -1798,10 +1798,11 @@ void cv::transform( InputArray _src, OutputArray _dst, InputArray _mtx )
         if( scn == 1 )
         {
             double alpha, beta;
-            if( mtype == CV_32F )
-                alpha = m.at<float>(0), beta = m.at<float>(1);
-            else
-                alpha = m.at<double>(0), beta = m.at<double>(1);
+            if ( mtype == CV_32F ) {
+                alpha = m.at<float>(0); beta = m.at<float>(1);
+            } else {
+                alpha = m.at<double>(0); beta = m.at<double>(1);
+            }
             src.convertTo(dst, dst.type(), alpha, beta);
             return;
         }
